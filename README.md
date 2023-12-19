@@ -3,6 +3,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started
 
 First, preparation .env for PrismaClient
+
 dont forget to change provider that you want!
 
 ```bash
@@ -13,7 +14,7 @@ npx prisma init
 npx prisma generate
 ```
 
-Third, Push DB from Schema Prisma
+Second, Push DB from Schema Prisma
 
 ```bash
 npx prisma db push (For MongoDB)
