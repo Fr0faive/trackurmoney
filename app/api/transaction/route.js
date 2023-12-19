@@ -6,19 +6,31 @@ import { NextResponse } from "next/server";
 export const POST = async (req) => {
   try {
     const body = await req.json();
-    const { title, description } = body;
-
+    const {
+      nama,
+      jumlah,
+      kategori,
+      tanggal,
+      metodePembayaran,
+      lokasi,
+      catatanTambahan,
+    } = body;
     const newTransaction = await prisma.transaction.create({
       data: {
-        title,
-        description,
+        nama,
+        jumlah,
+        kategori,
+        tanggal,
+        metodePembayaran,
+        lokasi,
+        catatanTambahan,
       },
     });
     return NextResponse.json(newTransaction);
   } catch (error) {
     console.log(error);
     return NextResponse.json(
-      { error: "Something went wrong", error },
+      { message: "Something went wrong when creating", error },
       { status: 500 }
     );
   }

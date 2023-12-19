@@ -29,7 +29,16 @@ export const GET = async (req, { params }) => {
 export const PATCH = async (req, { params }) => {
   try {
     const body = await req.json();
-    const { title, description } = body;
+
+    const {
+      nama,
+      jumlah,
+      kategori,
+      tanggal,
+      metodePembayaran,
+      lokasi,
+      catatanTambahan,
+    } = body;
 
     const { id } = params;
 
@@ -38,8 +47,13 @@ export const PATCH = async (req, { params }) => {
         id,
       },
       data: {
-        title,
-        description,
+        nama,
+        jumlah,
+        kategori,
+        tanggal,
+        metodePembayaran,
+        lokasi,
+        catatanTambahan,
       },
     });
     if (!updateTransaction) {

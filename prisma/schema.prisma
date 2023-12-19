@@ -13,7 +13,7 @@ datasource db {
 model Transaction {
   id             String     @id @default(auto()) @map("_id") @db.ObjectId
   nama  String?
-  jumlah     Float?
+  jumlah     Int?
   kategori       String?
   tanggal        DateTime?
   metodePembayaran String?

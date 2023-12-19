@@ -1,6 +1,10 @@
-import React from "react";
 import AddTransaction from "../component/AddTransaction";
 
+async function getData() {
+  const res = await fetch("http://localhost:3000/api/transaction");
+  const data = await res.json();
+  return data;
+}
 const AdminPage = () => {
   return (
     <div className="max-w-4xl mx-auto mt-4">
