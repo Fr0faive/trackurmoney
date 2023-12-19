@@ -19,7 +19,7 @@ const PostsPage = async () => {
 
   return (
     <div>
-      <h1 className="text-4xl">Post Page</h1>
+      <h1 className="text-4xl mb-4">Transaction List</h1>
       <ul className="flex flex-col gap-5">
         {posts.map((post) => (
           <Link href={`/posts/${post.id}`} key={post.id}>

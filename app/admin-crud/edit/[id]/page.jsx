@@ -1,9 +1,11 @@
 import React from "react";
 
-const AddPage = () => {
+const EditPage = () => {
   return (
     <div className="flex flex-col px-5 gap-5">
-      <h1 className="text-3xl font-bold">Tambahkan Catatan</h1>
+      <h1 className="text-3xl font-bold">
+        <a href="/admin-crud">&larr;</a> Edit Catatan
+      </h1>
       <form
         action=""
         className="border flex flex-col gap-3 border-black p-4 rounded-lg"
@@ -57,6 +59,7 @@ const AddPage = () => {
           placeholder="Masukkan Metode Pembayaran"
           className="py-2 px-4 border rounded-lg"
         />
+        {/* create back button */}
         <button
           type="submit"
           className="bg-blue-500 p-2 text-white rounded-md w-full"
@@ -68,4 +71,4 @@ const AddPage = () => {
   );
 };
 
-export default AddPage;
+export default EditPage;
