@@ -2,7 +2,26 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, preparation .env for PrismaClient
+dont forget to change provider that you want!
+
+```bash
+npm install
+# and
+npx prisma init
+# and
+npx prisma generate
+```
+
+Third, Push DB from Schema Prisma
+
+```bash
+npx prisma db push (For MongoDB)
+# or
+npx prisma migrate dev (For Relational DB)
+```
+
+Last, run the development server:
 
 ```bash
 npm run dev
