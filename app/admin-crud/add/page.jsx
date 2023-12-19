@@ -1,11 +1,50 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import axios from "axios";
 
 const AddPage = () => {
+  const [inputs, setInputs] = useState({
+    nama: "",
+    harga: 0,
+    kategori: "",
+    tanggal: "",
+    metodePembayaran: "",
+    lokasi: "",
+    catatanTambahan: "",
+  });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(inputs);
+    // setInputs({});
+    axios
+      .post("/api/transaction", inputs)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setInputs({});
+      });
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const updatedValue = name === "jumlah" ? parseInt(value) : value;
+
+    setInputs((prev) => ({
+      ...prev,
+      [name]: updatedValue,
+    }));
+  };
   return (
     <div className="flex flex-col px-5 gap-5">
-      <h1 className="text-3xl font-bold">Tambahkan Catatan</h1>
+      <h1 className="text-3xl font-bold">
+        <a href="/admin-crud">&larr;</a> Tambahkan Catatan
+      </h1>
       <form
         action=""
+        onSubmit={handleSubmit}
         className="border flex flex-col gap-3 border-black p-4 rounded-lg"
       >
         <label htmlFor="nama">Nama Catatan</label>
@@ -14,6 +53,8 @@ const AddPage = () => {
           name="nama"
           placeholder="Masukkan Nama"
           className="py-2 px-4 border rounded-lg"
+          value={inputs.nama || ""}
+          onChange={handleChange}
         />
         <label htmlFor="jumlah">Jumlah uang</label>
         <input
@@ -21,6 +62,8 @@ const AddPage = () => {
           name="jumlah"
           placeholder="Masukkan jumlah"
           className="py-2 px-4 border rounded-lg"
+          value={inputs.jumlah || ""}
+          onChange={handleChange}
         />
         <label htmlFor="kategori">Kategori Catatan</label>
         <input
@@ -28,6 +71,8 @@ const AddPage = () => {
           name="kategori"
           placeholder="Masukkan kategori"
           className="py-2 px-4 border rounded-lg"
+          value={inputs.kategori || ""}
+          onChange={handleChange}
         />
         <label htmlFor="tanggal">Tanggal Catatan</label>
         <input
@@ -35,6 +80,8 @@ const AddPage = () => {
           name="tanggal"
           placeholder="Masukkan tanggal"
           className="py-2 px-4 border rounded-lg"
+          value={inputs.tanggal || ""}
+          onChange={handleChange}
         />
         <label htmlFor="metodePembayaran">Metode Pembayaran</label>
         <input
@@ -42,6 +89,8 @@ const AddPage = () => {
           name="metodePembayaran"
           placeholder="Masukkan Metode Pembayaran"
           className="py-2 px-4 border rounded-lg"
+          value={inputs.metodePembayaran || ""}
+          onChange={handleChange}
         />
         <label htmlFor="lokasi">Lokasi</label>
         <input
@@ -49,13 +98,17 @@ const AddPage = () => {
           name="lokasi"
           placeholder="Masukkan Metode Pembayaran"
           className="py-2 px-4 border rounded-lg"
+          value={inputs.lokasi || ""}
+          onChange={handleChange}
         />
         <label htmlFor="catatanTambahan">Catatan Tambahan</label>
         <input
           type="text"
           name="catatanTambahan"
-          placeholder="Masukkan Metode Pembayaran"
+          placeholder="Masukkan catatan tambahan"
           className="py-2 px-4 border rounded-lg"
+          value={inputs.catatanTambahan || ""}
+          onChange={handleChange}
         />
         <button
           type="submit"

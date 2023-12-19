@@ -1,8 +1,12 @@
 import Link from "next/link";
-async function getPosts() {
-  const res = await fetch("http://localhost:3000/api/transaction");
 
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+async function getTransactions() {
+  const res = await fetch("http://localhost:3000/api/transaction", {
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
   return res.json();
 }
 
@@ -13,23 +17,26 @@ async function getUsers() {
   return res.json();
 }
 
-const PostsPage = async () => {
-  //   const posts = await getPosts();
-  const [posts, users] = await Promise.all([getPosts(), getUsers()]);
+const TransactionsPage = async () => {
+  //   const Transactions = await getTransactions();
+  const [transactions, users] = await Promise.all([
+    getTransactions(),
+    getUsers(),
+  ]);
 
   return (
     <div>
       <h1 className="text-4xl mb-4">Transaction List</h1>
       <ul className="flex flex-col gap-5">
-        {posts.map((post) => (
-          <Link href={`/posts/${post.id}`} key={post.id}>
+        {transactions.map((transaction) => (
+          <Link href={`/transaction/${transaction.id}`} key={transaction.id}>
             <li className="bg-gray-100 p-5 cursor-pointer">
-              <h4 className="text-xl font-bold">{post.nama}</h4>
+              <h4 className="text-xl font-bold">{transaction.nama}</h4>
               <p>
                 Rp
-                {typeof post.jumlah === "number"
-                  ? post.jumlah.toLocaleString("id-ID")
-                  : post.jumlah}
+                {typeof transaction.jumlah === "number"
+                  ? transaction.jumlah.toLocaleString("id-ID")
+                  : transaction.jumlah}
               </p>
             </li>
           </Link>
@@ -39,4 +46,4 @@ const PostsPage = async () => {
   );
 };
 
-export default PostsPage;
+export default TransactionsPage;

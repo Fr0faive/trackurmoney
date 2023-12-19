@@ -15,7 +15,7 @@ model Transaction {
   nama  String?
   jumlah     Int?
   kategori       String?
-  tanggal        DateTime?
+  tanggal        String?
   metodePembayaran String?
   lokasi         String?
   catatanTambahan String?

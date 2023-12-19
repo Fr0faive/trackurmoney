@@ -2,7 +2,9 @@ import AddTransaction from "../component/AddTransaction";
 import TransactionList from "../component/TransactionList";
 
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/transaction");
+  const res = await fetch("http://localhost:3000/api/transaction", {
+    cache: "no-store",
+  });
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
