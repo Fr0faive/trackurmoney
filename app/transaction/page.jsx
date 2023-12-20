@@ -31,6 +31,9 @@ const TransactionsPage = async () => {
         {transactions.map((transaction) => (
           <Link href={`/transaction/${transaction.id}`} key={transaction.id}>
             <li className="bg-gray-100 p-5 cursor-pointer">
+              <p className="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20 w-fit">
+                {transaction.kategori}
+              </p>
               <h4 className="text-xl font-bold">{transaction.nama}</h4>
               <p>
                 Rp
